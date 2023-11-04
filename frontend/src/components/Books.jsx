@@ -1,23 +1,55 @@
-import { Card, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { Heading, Text, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-
 
 export default function Books({ id, title, author, image, publisher, year }) {
   return (
     <Link to={`/books/${id}`}>
-    <Card key={id} my={4} p={4} cursor='pointer'>
-      <VStack>
-        <Heading size={"md"}>
-          {title} ({year})
-        </Heading>
-        <Text>{author}</Text>
-        <Image w={24} h={24} src={`http://localhost:8000/${image}`} />
-        <Text>
-          <span>Publisher: </span>
-          {publisher}
-        </Text>
-      </VStack>
-    </Card>
+      <Box
+        maxW={"400px"}
+        minW={"200px"}
+        maxH={"550px"}
+        minH={"450px"}
+        w={"full"}
+        h={"full"}
+        bgColor="gray.300"
+        _hover={{
+          transform: "scale(1.1)",
+          transitionDuration: "0.4s",
+          transitionTimingFunction: "ease-in-out",
+          boxShadow: "dark-lg",
+          border: "4px",
+          borderColor: "blue.400",
+          borderRadius: "10px",
+        }}
+        backgroundColor="bisque"
+      >
+        <Box>
+          <Heading size="xs" textAlign="center" m="5px" pt="5px" height="50px">
+            {title}
+            <br />({year})
+          </Heading>
+        </Box>
+        <Box
+          align="center"
+          bgImage={`url(http://localhost:8000/${image})`}
+          bgSize="cover"
+          bgPos="center"
+          h={"xs"}
+        ></Box>
+        <Box>
+          <Text
+            fontSize="x-small"
+            fontStyle="italic"
+            mt="10px"
+            p="10px"
+            textAlign="start"
+          >
+            Author : {author}
+            <br />
+            Publisher : {publisher}
+          </Text>
+        </Box>
+      </Box>
     </Link>
   );
 }
